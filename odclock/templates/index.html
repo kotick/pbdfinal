@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block MAIN %}
+<div id="myCarousel" class="carousel slide">
+  <div class="carousel-inner">
+    <div class="item active">
+      <img src="{{STATIC_URL}}/img/portada1.jpg" >
+      <div class="container">
+        <div class="carousel-caption">
+          <h1>Nos preocupamos por usted</h1>
+          <p class="lead"style="opacity:0.5;">Queremos devolverle la sonrisa y mejorar su calidad de vida.</p>
+
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <img src="{{STATIC_URL}}/img/2.jpg" alt="">
+      <div class="container">
+        <div class="carousel-caption">
+          <h1 >Años de experiencia</h1>
+          <p class="lead"style="opacity:0.5;">Nuestros cientos de pacientes satisfechos y felices nos avalan.</p>
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <img src="{{STATIC_URL}}/img/3.jpg" alt="">
+      <div class="container">
+        <div class="carousel-caption">
+          <h1>Trabajo en Equipo</h1>
+          <p class="lead"style="opacity:0.5;">Nuestros profesionales conforman equipos multidisciplinarios para brindarle una mejor atención.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+  <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+</div>
+{% endblock %}

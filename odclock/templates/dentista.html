@@ -1,0 +1,293 @@
+{% extends 'base.html' %}
+{% block MAIN %}
+<div class="tabbable tabs-left">      
+	<ul id="myTab" class="nav nav-tabs">
+		<li class="active"><a href="#informacion" data-toggle="tab">Informaciones</a></li>
+		<li><a href="#horasatencion" data-toggle="tab">Horas de atención reservadas</a></li>
+		<li><a id ="dios"href="#ofertaactual" data-toggle="tab">Oferta horaria actual</a></li>
+		<li><a id ="dios2" href="#ofertafutura" data-toggle="tab">Oferta horaria del proximo mes</a></li>
+		<li><a href="#ingresaroferta" data-toggle="tab">Ingresar oferta horaria</a></li>
+		<li><a href="#pacientes" data-toggle="tab">Ver ficha de un paciente</a></li>
+		<li><a href="#registrar" data-toggle="tab">Registrar Atención</a></li>
+		<li><a href="#administrar" data-toggle="tab">Administrar Cuenta</a></li>
+	</ul>
+	<div id="myTabContent" class="tab-content">
+		<div class="tab-pane fade in active" id="informacion" style="color:#3b444b;">
+			 <h1>Bienvenido/a Doctor/a</h1>
+			 <p>En esta sección podrá gestionar sus datos personales y su disponibilidad horaria, además podrá 
+ visualizar su agenda de pacientes.</p>
+		</div>
+		<div class="tab-pane fade" id="horasatencion" style="color:#3b444b;">
+			{%if agendamientos%}
+				{%for agendamiento in agendamientos%}
+					{%if agendamiento.desabilitado%}
+					{%else%}
+						<table class="table table-hover table-condensed">
+							<thead> 
+								<tr>
+									<td>Especialidad</td>
+									<td>Paciente</td>
+									<td>Dia</td>
+									<td>Mes</td>
+									<td>Bloque</td>
+								</tr>
+							</thead>                   
+							<tbody>
+								<tr>
+									<td>{{agendamiento.especialidad.nombre}}</td>
+									<td>{{agendamiento.paciente.nombres}}</td>
+									<td>{{agendamiento.calendario.dia}}</td>
+									<td>{{agendamiento.calendario.mes}}</td>
+									<td>{{agendamiento.calendario.Bloque_horario}}</td>
+								</tr>
+							</tbody>
+						</table>
+					{%endif%}
+				{%endfor%}
+			{%else%}
+				<h3>No posee horas reservadas</h3>
+			{%endif%}
+		</div>
+		<div class="tab-pane fade" id="ofertaactual" style="color:#3b444b;">
+			<table class="table table-hover table-condensed">
+				<thead id="cabecera2"> 
+				</thead>                   
+				<tbody id="grilla2">																	
+				</tbody>
+			</table>			
+		</div>	
+		<div class="tab-pane fade" id="ofertafutura" style="color:#3b444b;">
+			<table class="table table-hover table-condensed">
+				<thead id="cabecera3"> 
+				</thead>                   
+				<tbody id="grilla3">																			
+				</tbody>
+			</table>			
+		</div>	
+		<div class="tab-pane fade" id="ingresaroferta" style="color:#3b444b;">
+			<form action="/ingresaroferta" method="post">
+				{% csrf_token %}
+				<table class="table table-hover table-condensed">
+					<thead> 
+						<tr>
+							<td>Horario</td>
+							<td>Lunes</td>
+							<td>Martes</td>
+							<td>Miercoles</td>
+							<td>Jueves</td>
+							<td>Viernes</td>
+						</tr>
+					</thead>                   
+					<tbody>
+						<tr>
+							<td>08:00</td>
+							<td><input type="checkbox"name="11" value="11"></td>
+							<td><input type="checkbox"name="12" value="12"></td>
+							<td><input type="checkbox"name="13" value="13"></td>
+							<td><input type="checkbox"name="14" value="14"></td>
+							<td><input type="checkbox"name="15" value="15"></td>
+						</tr>
+						<tr>
+							<td>08:30</td>
+							<td><input type="checkbox"name="21" value="21"></td>
+							<td><input type="checkbox"name="22" value="22"></td>
+							<td><input type="checkbox"name="23" value="23"></td>
+							<td><input type="checkbox"name="24" value="24"></td>
+							<td><input type="checkbox"name="25" value="25"></td>
+						</tr>
+						<tr>
+							<td>09:00</td>
+							<td><input type="checkbox"name="31" value="31"></td>
+							<td><input type="checkbox"name="32" value="32"></td>
+							<td><input type="checkbox"name="33" value="33"></td>
+							<td><input type="checkbox"name="34" value="34"></td>
+							<td><input type="checkbox"name="35" value="35"></td>
+						</tr>
+						<tr>
+							<td>09:30</td>
+							<td><input type="checkbox"name="41" value="41"></td>
+							<td><input type="checkbox"name="42" value="42"></td>
+							<td><input type="checkbox"name="43" value="43"></td>
+							<td><input type="checkbox"name="44" value="44"></td>
+							<td><input type="checkbox"name="45" value="45"></td>
+						</tr>
+						<tr>
+							<td>10:00</td>
+							<td><input type="checkbox"name="51" value="51"></td>
+							<td><input type="checkbox"name="52" value="52"></td>
+							<td><input type="checkbox"name="53" value="53"></td>
+							<td><input type="checkbox"name="54" value="54"></td>
+							<td><input type="checkbox"name="55" value="55"></td>
+						</tr>
+						<tr>
+							<td>10:30</td>
+							<td><input type="checkbox"name="61" value="61"></td>
+							<td><input type="checkbox"name="62" value="62"></td>
+							<td><input type="checkbox"name="63" value="63"></td>
+							<td><input type="checkbox"name="64" value="64"></td>
+							<td><input type="checkbox"name="65" value="65"></td>
+						</tr>
+						<tr>
+							<td>11:00</td>
+							<td><input type="checkbox"name="71" value="71"></td>
+							<td><input type="checkbox"name="72" value="72"></td>
+							<td><input type="checkbox"name="73" value="73"></td>
+							<td><input type="checkbox"name="74" value="74"></td>
+							<td><input type="checkbox"name="75" value="75"></td>
+						</tr>
+						<tr>
+							<td>11:30</td>
+							<td><input type="checkbox"name="81" value="81"></td>
+							<td><input type="checkbox"name="82" value="82"></td>
+							<td><input type="checkbox"name="83" value="83"></td>
+							<td><input type="checkbox"name="84" value="84"></td>
+							<td><input type="checkbox"name="85" value="85"></td>
+						</tr>
+						<tr>
+							<td>12:00</td>
+							<td><input type="checkbox"name="91" value="91"></td>
+							<td><input type="checkbox"name="92" value="92"></td>
+							<td><input type="checkbox"name="93" value="93"></td>
+							<td><input type="checkbox"name="94" value="94"></td>
+							<td><input type="checkbox"name="95" value="95"></td>
+						</tr>
+						<tr>
+							<td>12:30</td>
+							<td><input type="checkbox"name="101" value="101"></td>
+							<td><input type="checkbox"name="102" value="102"></td>
+							<td><input type="checkbox"name="103" value="103"></td>
+							<td><input type="checkbox"name="104" value="104"></td>
+							<td><input type="checkbox"name="105" value="105"></td>
+						</tr>
+						<tr>
+							<td>13:00</td>
+							<td><input type="checkbox"name="111" value="111"></td>
+							<td><input type="checkbox"name="112" value="112"></td>
+							<td><input type="checkbox"name="113" value="113"></td>
+							<td><input type="checkbox"name="114" value="114"></td>
+							<td><input type="checkbox"name="115" value="115"></td>
+						</tr>					
+						<tr>
+							<td>13:30</td>
+							<td><input type="checkbox"name="121" value="121"></td>
+							<td><input type="checkbox"name="122" value="122"></td>
+							<td><input type="checkbox"name="123" value="123"></td>
+							<td><input type="checkbox"name="124" value="124"></td>
+							<td><input type="checkbox"name="125" value="125"></td>
+						</tr>					
+						<tr>
+							<td>14:00</td>
+							<td><input type="checkbox"name="131" value="131"></td>
+							<td><input type="checkbox"name="132" value="132"></td>
+							<td><input type="checkbox"name="133" value="133"></td>
+							<td><input type="checkbox"name="134" value="134"></td>
+							<td><input type="checkbox"name="135" value="135"></td>
+						</tr>
+						<tr>
+							<td>14:30</td>
+							<td><input type="checkbox"name="141" value="141"></td>
+							<td><input type="checkbox"name="142" value="142"></td>
+							<td><input type="checkbox"name="143" value="143"></td>
+							<td><input type="checkbox"name="144" value="144"></td>
+							<td><input type="checkbox"name="145" value="145"></td>
+						</tr>	
+						<tr>
+							<td>15:00</td>
+							<td><input type="checkbox"name="151" value="151"></td>
+							<td><input type="checkbox"name="152" value="152"></td>
+							<td><input type="checkbox"name="153" value="153"></td>
+							<td><input type="checkbox"name="154" value="154"></td>
+							<td><input type="checkbox"name="155" value="155"></td>
+						</tr>
+						<tr>
+							<td>15:30</td>
+							<td><input type="checkbox"name="161" value="161"></td>
+							<td><input type="checkbox"name="162" value="162"></td>
+							<td><input type="checkbox"name="163" value="163"></td>
+							<td><input type="checkbox"name="164" value="164"></td>
+							<td><input type="checkbox"name="165" value="165"></td>
+						</tr>																					
+					</tbody>
+				</table>
+				<input type="submit" class="btn btn-primary" value="Ingresar Oferta">
+			</form>
+		</div>
+		<div class="tab-pane fade" id="pacientes" style="color:#3b444b;">
+			<img src="{{STATIC_URL}}/img/webconstruccion.jpg" alt="logo">
+		</div>
+		<div class="tab-pane fade" id="registrar" style="color:#3b444b;">
+			<img src="{{STATIC_URL}}/img/webconstruccion.jpg" alt="logo">
+		</div>	
+		<div class="tab-pane fade" id="administrar" style="color:#3b444b;">
+			<h3>Hola! {{user.dentista.nombres}} {{user.dentista.apellido_p}} {{user.dentista.apellido_m}}</h3>
+			<div class="accordion" id="accordion2">
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+	                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+	                    	<div class="edicioni">Contraseña</div><div class="edicionc">*******</div><div class="ediciond">Modificar</div>
+	                    </a>
+                    </div>
+                    <div id="collapseOne" class="accordion-body collapse" style="height: 0px;">
+	                    <div class="accordion-inner">
+        				    <form action="modificar/password" method="post">
+						        {% csrf_token %}
+						        {{modificarp_form.as_p}}
+					        	<input type="submit" class="btn btn-primary" value="Modificar">
+					    	</form>	 	                    	
+	                    	
+	                    </div>
+                    </div>
+                </div>
+                <div class="accordion-group">
+                  	<div class="accordion-heading">
+                    	<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+	                    	<div class="edicioni">Correo</div><div class="edicionc">{{user.email}}</div><div class="ediciond">Modificar</div>
+                    	</a>
+                    </div>
+                    <div id="collapseTwo" class="accordion-body collapse" style="height: 0px;">
+	                    <div class="accordion-inner">
+        				    <form action="modificar/correo" method="post">
+						        {% csrf_token %}
+						        {{modificare_form.as_p}}
+					        	<input type="submit" class="btn btn-primary" value="Modificar">
+					    	</form>      	
+	                    </div>
+                    </div>
+                </div>
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
+                    	<div class="edicioni">Telefono Celular</div><div class="edicionc">{{user.dentista.telefono_c}}</div><div class="ediciond">Modificar</div>
+                    </a>
+                    </div>
+                    <div id="collapseThree" class="accordion-body collapse" style="height: 0px;">
+                    	<div class="accordion-inner">
+        				    <form action="modificar/telefonocelular" method="post">
+						        {% csrf_token %}
+						        {{modificartc_form.as_p}}
+					        	<input type="submit" class="btn btn-primary" value="Modificar">
+					    	</form>
+                    	</div>
+                    </div>
+                </div>
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion2" href="#collapseFour">
+                    	<div class="edicioni">Telefono Fijo</div><div class="edicionc">{{user.dentista.telefono_f}}</div><div class="ediciond">Modificar</div>
+                    </a>
+                    </div>
+                    <div id="collapseFour" class="accordion-body collapse" style="height: 0px;">
+                    	<div class="accordion-inner">
+        				    <form action="modificar/telefonofijo" method="post">
+						        {% csrf_token %}
+						        {{modificartf_form.as_p}}
+					        	<input type="submit" class="btn btn-primary" value="Modificar">
+					    	</form>
+                    	</div>
+                    </div>
+                </div>	                
+            </div>
+		</div>					
+	</div>
+</div>
+{% endblock %}

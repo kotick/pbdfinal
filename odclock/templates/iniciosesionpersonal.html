@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block MAIN %}
+<div class="centro">	
+	<h2 style="color:#3b444b;">Bienvenido/a</h2>
+	<h3 style="color:#3b444b;">Si no posee una cuenta, por favor solicitar al administrador. </br>
+	 Si la posee, ingrese con ella.</h3>
+    <form action="/login" method="post">
+        {% csrf_token %}
+        {{login_form.as_p}}
+        <input type="submit" class="btn btn-primary" value="Ingresar">
+    </form>
+</div>
+
+{% endblock %}

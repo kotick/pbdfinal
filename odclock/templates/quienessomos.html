@@ -1,0 +1,215 @@
+{% extends 'base.html' %}
+{% block MAIN %}
+
+<div class="centro"style="padding-left: 10%;padding-right: 10%;">
+
+	<div class="container-fluid quienesup">
+		<div class="row-fluid">
+			<div class="span4">
+				<img src="{{STATIC_URL}}/img/logo.jpg" alt="logo">
+			</div>
+			
+			
+			<div class="span8" style="text-align:right;">
+							<h1>Clínica Andals</h1>
+			<h4>Queremos hacerte sonreír de verdad.</h4>
+			<br/>
+
+			</div>
+
+
+
+		</div><br/>
+					<br/>
+					<p>Nuestros profesionales cuentan con una sólida formación académica, actualizaciones constantes en nuevas tecnologías y un sentido de la ética altamente desarrollado.</p>
+		<a data-toggle="modal" href="#profesionales" class="btn btn-primary btn-large">Profesionales</a>
+	</div>
+	<div class="container-fluid quienesup">	
+		<p>Nuestras especialidades se encuentran reconocidas por el colegio de dentistas y están al servicio de otorgarle una atención de primer nivel, enfocada a sus necesidades.</p>
+		<br/>
+		<br/>
+		<a data-toggle="modal" href="#especialidades" class="btn btn-primary btn-large">Especialidades</a>
+	</div>
+</div>
+
+<div id="profesionales" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h3 id="myModalLabel" style="color: #013220;
+	text-shadow: 1px 1px 1px #fafafa; text-weight: bold;">Profesionales</h3>
+	</div>
+	<div class="modal-body">
+		<div class="row-fluid">
+	  		<div class="span12">
+	  			<div class="row-fluid">
+	  				<div class="span6">
+						<img src="{{STATIC_URL}}/img/cele.jpg" alt="">
+	  				</div>
+	  				<div class="span6">
+						<h2> Celeste Devia</h2>
+						<h3> Ortodoncia</h3>
+						<p>Egresada de la Universidad de Chile</p>
+	  				</div>
+	  			</div>
+	  			<br/>
+	  			<div class="row-fluid">
+	  				<div class="span6">
+						<img src="{{STATIC_URL}}/img/javi.jpg" alt="">
+	  				</div>
+	  				<div class="span6">
+						<h2> Javiera Henríquez</h2>
+						<h3> Odontopediatría</h3>
+						<p> Egresada de la Universidad de Chile</p>
+	  				</div>	  				
+	  			</div>
+	  			<br/>
+	  			<div class="row-fluid">
+	  				<div class="span6">
+						<img src="{{STATIC_URL}}/img/shei.jpg" alt="">
+	  				</div>
+	  				<div class="span6">
+						<h2> Sheilah Vivanco</h2>
+						<h3> Rehabilitación Oral</h3>
+						<p> Egresada de la Universidad de Chile</p>
+	  				</div>	  		
+	  			</div>
+	  			<br/>
+	  			<div class="row-fluid">
+	  				<div class="span6">
+						<img src="{{STATIC_URL}}/img/fer.jpg" alt="">
+	  				</div>
+	  					  				<div class="span6">
+						<h2> Fernanda Muñoz</h2>
+						<h3> Implantología</h3>
+						<p> Egresada de la Universidad de Chile.</p>
+	  				</div>
+	  			</div>
+	  			<br/>
+	  			<div class="row-fluid">
+	  				<div class="span6">
+						<img src="{{STATIC_URL}}/img/jimmy.jpg" alt="">
+	  				</div>
+	  				<div class="span6">
+						<h2> Jaime González</h2>
+						<h3> Endodoncia.</h3>
+						<p> Egresado de la Universidad de Chile</p>
+	  				</div>	  				
+	  			</div>	  			
+	  			<br/>	  		
+	  			<div class="row-fluid">
+	  				<div class="span6">
+						<img src="{{STATIC_URL}}/img/marta.jpg" alt="">
+	  				</div>
+	  				<div class="span6">
+						<h2> Marta Bravo</h2>
+						<h3> Cirugía Maxilofacial</h3>
+						<p> Egresada de la Universidad de Chile.</p>
+	  				</div>	  				
+	  			</div>
+	  			<br/>
+	  			<div class="row-fluid">
+	  				<div class="span6">
+						<img src="{{STATIC_URL}}/img/romi.jpg" alt="">
+	  				</div>
+	  				<div class="span6">
+						<h2> Romina Huenchunao</h2>
+						<h3> Periodoncia.</h3>
+						<p> Egresada de la Universidad de Chile</p>
+	  				</div>	  				
+	  			</div>	  			
+	  			<br/>	  			
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-primary"data-dismiss="modal">Cerrar</button>
+	</div>
+</div>
+
+<div id="especialidades" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h3 id="myModalLabel" style="color: #013220;
+	text-shadow: 1px 1px 1px #fafafa; text-weight: bold;">Especialidades</h3>
+	</div>
+	<div class="modal-body">
+		<div class="row-fluid">
+	  		<div class="span12">
+	  			<div class="row-fluid">
+	  				<div class="span6">
+						<img src="{{STATIC_URL}}/img/ciruja.jpg" alt="">
+	  				</div>
+	  				<div class="span6">
+						<h2> Cirugía Maxilofacial</h2>
+						<p> Resolver urgencias, reconstruir y modificar el macizo maxilofacial, es nuestro campo.</p>
+	  				</div>	  				
+	  			</div>
+	  			<br/>
+	  			<div class="row-fluid">
+	  				<div class="span6">
+						<img src="{{STATIC_URL}}/img/endo.jpg" alt="">
+	  				</div>
+	  				<div class="span6">
+						<h2> Endodoncia</h2>
+						<p> Realizar tratamiento de conducto para lograr la preservación dentaria, es lo que hacemos.</p>
+	  				</div>	  				
+	  			</div>
+	  			<br/>
+	  			<div class="row-fluid">
+	  				<div class="span6">
+						<img src="{{STATIC_URL}}/img/implantes.jpg" alt="">
+	  				</div>
+	  				<div class="span6">
+						<h2> Implantología</h2>
+						<p> Reemplazamos el anclaje perdido para reconstruir nuevas sonrisas.</p>
+	  				</div>	  				
+	  			</div>
+	  			<br/>
+	  			<div class="row-fluid">
+	  				<div class="span6">
+						<img src="{{STATIC_URL}}/img/orto.jpg" alt="">
+	  				</div>
+	  				<div class="span6">
+						<h2> Ortodoncia</h2>
+						<p> Corregimos malposiciones dentarias para mejorar función y estética.</p>
+	  				</div>	  				
+	  			</div>
+	  			<br/>	  	
+	  			<div class="row-fluid">
+	  				<div class="span6">
+						<img src="{{STATIC_URL}}/img/pediatria.jpg" alt="">
+	  				</div>
+	  				<div class="span6">
+						<h2> Odontopediatría</h2>
+						<p>Acompañamos a niños y jovenes en la mantención de su salud oral.</p>
+	  				</div>	  				
+	  			</div>
+	  			<br/>
+	  			<div class="row-fluid">
+	  				<div class="span6">
+						<img src="{{STATIC_URL}}/img/perio.jpg" alt="">
+	  				</div>
+	  				<div class="span6">
+						<h2> Periodoncia</h2>
+						<p> Tratamos el sustrato sobre el cual descansan los dientes, procuramos encías sanas.</p>
+	  				</div>	  				
+	  			</div>
+	  			<br/>
+	  			<div class="row-fluid">
+	  				<div class="span6">
+						<img src="{{STATIC_URL}}/img/rehabilitacion.jpg" alt="">
+	  				</div>
+	  				<div class="span6">
+						<h2>Rehabilitación Oral</h2>
+						<p> Reconstruímos sonrisas y bocas completas, devolviendo, función y estética.</p>
+	  				</div>	  				
+	  			</div>
+	  			<br/>	  				
+			</div>
+		</div>		
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+	</div>
+</div>
+{% endblock %}

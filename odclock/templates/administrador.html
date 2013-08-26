@@ -1,0 +1,414 @@
+{% extends 'base.html' %}
+{% block MAIN %}
+<div class="tabbable tabs-left">      
+	<ul id="myTab" class="nav nav-tabs">
+		<li class="active"><a href="#informacion" data-toggle="tab">Informaciones</a></li>
+		<li><a href="#adentista" data-toggle="tab">Administrar Dentistas</a></li>
+		<li><a href="#aespecialidad" data-toggle="tab">Administrar Especialidades</a></li>
+		<li><a href="#abox" data-toggle="tab">Administrar Boxes</a></li>
+		<li><a href="#asecretarias" data-toggle="tab">Administrar Secretarias</a></li>
+		<li><a href="#nombraradministrador" data-toggle="tab">Nombrar un nuevo administrador</a></li>
+	</ul>
+	<div id="myTabContent" class="tab-content">
+		<div class="tab-pane fade in active" id="informacion" style="color:#3b444b;">
+			<h1>Bienvenido/a Administrador/a</h1> <p>En esta sección podrá gestionar los asuntos clínicos y administrativos del recinto.</p>
+		</div>
+		<div class="tab-pane fade" id="adentista">
+			<div class="row-fluid">
+				<div class="span6">
+					<p> Dentista </p>
+				</br>
+				</br>
+				<p> Especialidad </p>
+	            </br>
+	</br>
+				<p> Oferta Horaria</p>
+                </br>
+                </br>
+				</div>
+				<div class="span6">
+					<a data-toggle="modal" href="#registrardentista" class="btn btn-success ">Registrar</a>
+					<a data-toggle="modal" href="#eliminardentista" class="btn btn-danger ">Eliminar </a>
+					<a data-toggle="modal" href="#asignarespecialidad" class="btn btn-success ">Asignar</a>
+					<a data-toggle="modal" href="#desasignarespecialidad" class="btn btn-danger ">Desasignar</a>
+					<a data-toggle="modal" href="#eliminaroferta" class="btn btn-success ">Ingresar </a>
+					<a data-toggle="modal" href="#eliminaroferta" class="btn btn-success ">Eliminar </a>
+				
+					<a data-toggle="modal" href="#nombraradministrador" class="btn btn-danger ">Nombrar a un administrador</a>
+					</div>
+				
+			</div>
+		</div>
+		<div class="tab-pane fade" id="aespecialidad">
+			<a data-toggle="modal" href="#agregarespecialidad" class="btn btn-success ">Agregar una especialidad</a>
+			<a data-toggle="modal" href="#eliminarespecialidad" class="btn btn-danger">Eliminar una especialidad</a>
+		</div>
+		<div class="tab-pane fade" id="nombraradministrador">
+			<img src="{{STATIC_URL}}/img/webconstruccion.jpg" alt="logo">
+		</div>
+		<div class="tab-pane fade" id="abox">
+			<a data-toggle="modal" href="#agregarbox" class="btn btn-success ">Agregar un box</a>
+			<a data-toggle="modal" href="#eliminarbox" class="btn btn-danger">Eliminar un box</a>
+		</div>
+		<div class="tab-pane fade" id="asecretarias">
+			<a data-toggle="modal" href="#agregarsecretaria" class="btn btn-success ">Agregar una secretaria</a>
+			<a data-toggle="modal" href="#eliminarsecretaria" class="btn btn-danger">Eliminar una secretaria</a>
+		</div>
+	</div>
+</div>
+
+<div id="registrardentista" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+	<div class="modal-header">
+	  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	  <h3 id="myModalLabel">Agregando un nuevo dentista</h3>
+	</div>
+	<form action="/agregardentista" method="post">
+		<div class="modal-body">
+		        {% csrf_token %}
+		        {{Adentista_form.as_p}}
+		</div>
+		<div class="modal-footer">
+			<input type="submit" class="btn" value="Agregar">
+				<button class="btn" data-dismiss="modal">Cerrar</button>
+		</div>
+	</form>
+</div>
+
+<div id="eliminardentista" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+	<div class="modal-header">
+	  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	  <h3 id="myModalLabel">Eliminando un dentista</h3>
+	</div>
+	<form action="/eliminardentista" method="post">
+		<div class="modal-body">
+		        {% csrf_token %}
+		        {{Edentista_form.as_p}}
+		</div>
+		<div class="modal-footer">
+			<input type="submit" class="btn" value="Eliminar">
+				<button class="btn" data-dismiss="modal">Cerrar</button>
+		</div>
+	</form>
+</div>
+
+<div id="asignarespecialidad" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+	<div class="modal-header">
+	  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	  <h3 id="myModalLabel">Asignando una especialidad a un dentista</h3>
+	</div>
+	<form action="/asignarespecialidad" method="post">
+		<div class="modal-body">
+		        {% csrf_token %}
+		        {{Asignar_form.as_p}}
+		</div>
+		<div class="modal-footer">
+			<input type="submit" class="btn" value="Asignar">
+				<button class="btn" data-dismiss="modal">Cerrar</button>
+		</div>
+	</form>
+</div>
+<div id="desasignarespecialidad" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+	<div class="modal-header">
+	  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	  <h3 id="myModalLabel">Desasignando una especialidad a un dentista</h3>
+	</div>
+	<form action="/desasignarespecialidad" method="post">
+		<div class="modal-body">
+		        {% csrf_token %}
+		        {{Desasignar_form.as_p}}
+		</div>
+		<div class="modal-footer">
+			<input type="submit" class="btn" value="Desasignar">
+				<button class="btn" data-dismiss="modal">Cerrar</button>
+		</div>
+	</form>
+</div>
+<div id="nombraradministrador" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+	<div class="modal-header">
+	  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	  <h3 id="myModalLabel">Nombrar un nuevo administrador</h3>
+	</div>
+	<form action="/nombraradministrador" method="post">
+		<div class="modal-body">
+		        {% csrf_token %}
+		        {{nombraradministrador_form.as_p}}
+		</div>
+		<div class="modal-footer">
+			<input type="submit" class="btn" value="Desasignar">
+				<button class="btn" data-dismiss="modal">Cerrar</button>
+		</div>
+	</form>
+</div>
+<div id="ingresaroferta" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+	<div class="modal-header">
+	  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	  <h3 id="myModalLabel">Ingresando una oferta horaria a un dentista</h3>
+	</div>
+	<form action="/administrador" method="post">
+		<div class="modal-body">
+	        {% csrf_token %}
+	        {{Ingresar_form.as_p}}
+			<table class="table table-hover table-condensed">
+				<thead> 
+					<tr>
+						<td>Horario</td>
+						<td>Lunes</td>
+						<td>Martes</td>
+						<td>Miercoles</td>
+						<td>Jueves</td>
+						<td>Viernes</td>
+					</tr>
+				</thead>                   
+				<tbody>
+					<tr>
+						<td>08:00</td>
+						<td><input type="checkbox"name="11" value="11"></td>
+						<td><input type="checkbox"name="12" value="12"></td>
+						<td><input type="checkbox"name="13" value="13"></td>
+						<td><input type="checkbox"name="14" value="14"></td>
+						<td><input type="checkbox"name="15" value="15"></td>
+					</tr>
+					<tr>
+						<td>08:30</td>
+						<td><input type="checkbox"name="21" value="21"></td>
+						<td><input type="checkbox"name="22" value="22"></td>
+						<td><input type="checkbox"name="23" value="23"></td>
+						<td><input type="checkbox"name="24" value="24"></td>
+						<td><input type="checkbox"name="25" value="25"></td>
+					</tr>
+					<tr>
+						<td>09:00</td>
+						<td><input type="checkbox"name="31" value="31"></td>
+						<td><input type="checkbox"name="32" value="32"></td>
+						<td><input type="checkbox"name="33" value="33"></td>
+						<td><input type="checkbox"name="34" value="34"></td>
+						<td><input type="checkbox"name="35" value="35"></td>
+					</tr>
+					<tr>
+						<td>09:30</td>
+						<td><input type="checkbox"name="41" value="41"></td>
+						<td><input type="checkbox"name="42" value="42"></td>
+						<td><input type="checkbox"name="43" value="43"></td>
+						<td><input type="checkbox"name="44" value="44"></td>
+						<td><input type="checkbox"name="45" value="45"></td>
+					</tr>
+					<tr>
+						<td>10:00</td>
+						<td><input type="checkbox"name="51" value="51"></td>
+						<td><input type="checkbox"name="52" value="52"></td>
+						<td><input type="checkbox"name="53" value="53"></td>
+						<td><input type="checkbox"name="54" value="54"></td>
+						<td><input type="checkbox"name="55" value="55"></td>
+					</tr>
+					<tr>
+						<td>10:30</td>
+						<td><input type="checkbox"name="61" value="61"></td>
+						<td><input type="checkbox"name="62" value="62"></td>
+						<td><input type="checkbox"name="63" value="63"></td>
+						<td><input type="checkbox"name="64" value="64"></td>
+						<td><input type="checkbox"name="65" value="65"></td>
+					</tr>
+					<tr>
+						<td>11:00</td>
+						<td><input type="checkbox"name="71" value="71"></td>
+						<td><input type="checkbox"name="72" value="72"></td>
+						<td><input type="checkbox"name="73" value="73"></td>
+						<td><input type="checkbox"name="74" value="74"></td>
+						<td><input type="checkbox"name="75" value="75"></td>
+					</tr>
+					<tr>
+						<td>11:30</td>
+						<td><input type="checkbox"name="81" value="81"></td>
+						<td><input type="checkbox"name="82" value="82"></td>
+						<td><input type="checkbox"name="83" value="83"></td>
+						<td><input type="checkbox"name="84" value="84"></td>
+						<td><input type="checkbox"name="85" value="85"></td>
+					</tr>
+					<tr>
+						<td>12:00</td>
+						<td><input type="checkbox"name="91" value="91"></td>
+						<td><input type="checkbox"name="92" value="92"></td>
+						<td><input type="checkbox"name="93" value="93"></td>
+						<td><input type="checkbox"name="94" value="94"></td>
+						<td><input type="checkbox"name="95" value="95"></td>
+					</tr>
+					<tr>
+						<td>12:30</td>
+						<td><input type="checkbox"name="101" value="101"></td>
+						<td><input type="checkbox"name="102" value="102"></td>
+						<td><input type="checkbox"name="103" value="103"></td>
+						<td><input type="checkbox"name="104" value="104"></td>
+						<td><input type="checkbox"name="105" value="105"></td>
+					</tr>
+					<tr>
+						<td>13:00</td>
+						<td><input type="checkbox"name="111" value="111"></td>
+						<td><input type="checkbox"name="112" value="112"></td>
+						<td><input type="checkbox"name="113" value="113"></td>
+						<td><input type="checkbox"name="114" value="114"></td>
+						<td><input type="checkbox"name="115" value="115"></td>
+					</tr>					
+					<tr>
+						<td>13:30</td>
+						<td><input type="checkbox"name="121" value="121"></td>
+						<td><input type="checkbox"name="122" value="122"></td>
+						<td><input type="checkbox"name="123" value="123"></td>
+						<td><input type="checkbox"name="124" value="124"></td>
+						<td><input type="checkbox"name="125" value="125"></td>
+					</tr>					
+					<tr>
+						<td>14:00</td>
+						<td><input type="checkbox"name="131" value="131"></td>
+						<td><input type="checkbox"name="132" value="132"></td>
+						<td><input type="checkbox"name="133" value="133"></td>
+						<td><input type="checkbox"name="134" value="134"></td>
+						<td><input type="checkbox"name="135" value="135"></td>
+					</tr>
+					<tr>
+						<td>14:30</td>
+						<td><input type="checkbox"name="141" value="141"></td>
+						<td><input type="checkbox"name="142" value="142"></td>
+						<td><input type="checkbox"name="143" value="143"></td>
+						<td><input type="checkbox"name="144" value="144"></td>
+						<td><input type="checkbox"name="145" value="145"></td>
+					</tr>	
+					<tr>
+						<td>15:00</td>
+						<td><input type="checkbox"name="151" value="151"></td>
+						<td><input type="checkbox"name="152" value="152"></td>
+						<td><input type="checkbox"name="153" value="153"></td>
+						<td><input type="checkbox"name="154" value="154"></td>
+						<td><input type="checkbox"name="155" value="155"></td>
+					</tr>
+					<tr>
+						<td>15:30</td>
+						<td><input type="checkbox"name="161" value="161"></td>
+						<td><input type="checkbox"name="162" value="162"></td>
+						<td><input type="checkbox"name="163" value="163"></td>
+						<td><input type="checkbox"name="164" value="164"></td>
+						<td><input type="checkbox"name="165" value="165"></td>
+					</tr>																					
+				</tbody>
+			</table>
+			<div class="modal-footer">
+				<input type="submit" class="btn" value="Ingresar Oferta">
+					<button class="btn" data-dismiss="modal">Cerrar</button>
+			</div>
+		</div>
+	</form>
+</div>
+
+
+<div id="agregarespecialidad" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+	<div class="modal-header">
+	  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	  <h3 id="myModalLabel">Agregando una nueva especialidad</h3>
+	</div>
+	<form action="/agregarespecialidad" method="post">
+		<div class="modal-body">
+		        {% csrf_token %}
+		        {{Aespecialidad_form.as_p}}
+		</div>
+		<div class="modal-footer">
+			<input type="submit" class="btn" value="Agregar">
+				<button class="btn" data-dismiss="modal">Cerrar</button>
+		</div>
+	</form>
+</div>
+<div id="eliminarespecialidad" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+	<div class="modal-header">
+	  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	  <h3 id="myModalLabel">Eliminando una especialidad</h3>
+	</div>
+	<form action="/eliminarespecialidad" method="post">
+		<div class="modal-body">
+		        {% csrf_token %}
+		        {{Eespecialidad_form.as_p}}
+		</div>
+		<div class="modal-footer">
+			<input type="submit" class="btn" value="Eliminar">
+				<button class="btn" data-dismiss="modal">Cerrar</button>
+		</div>
+	</form>
+</div>
+<div id="eliminaroferta" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+	<div class="modal-header">
+	  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	  <h3 id="myModalLabel">Eliminando la oferta horaria de un dentista</h3>
+	</div>
+	<form action="/eliminaroferta" method="post">
+		<div class="modal-body">
+		        {% csrf_token %}
+		        {{Borrar_form.as_p}}
+		</div>
+		<div class="modal-footer">
+			<input type="submit" class="btn" value="Agregar">
+				<button class="btn" data-dismiss="modal">Cerrar</button>
+		</div>
+	</form>
+</div>
+<div id="agregarbox" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+	<div class="modal-header">
+	  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	  <h3 id="myModalLabel">Agregando un nuevo box</h3>
+	</div>
+	<form action="/agregarbox" method="post">
+		<div class="modal-body">
+		        {% csrf_token %}
+		        {{Abox_form.as_p}}
+		</div>
+		<div class="modal-footer">
+			<input type="submit" class="btn" value="Agregar">
+				<button class="btn" data-dismiss="modal">Cerrar</button>
+		</div>
+	</form>
+</div>
+<div id="eliminarbox" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+	<div class="modal-header">
+	  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	  <h3 id="myModalLabel">Eliminando un box</h3>
+	</div>
+	<form action="/eliminarbox" method="post">
+		<div class="modal-body">
+		        {% csrf_token %}
+		        {{Ebox_form.as_p}}
+		</div>
+		<div class="modal-footer">
+			<input type="submit" class="btn" value="Eliminar">
+				<button class="btn" data-dismiss="modal">Cerrar</button>
+		</div>
+	</form>
+</div>
+<div id="agregarsecretaria" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+	<div class="modal-header">
+	  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	  <h3 id="myModalLabel">Agregando una nueva secretaria</h3>
+	</div>
+	<form action="/agregarsecretaria" method="post">
+		<div class="modal-body">
+		        {% csrf_token %}
+		        {{Asecretaria_form.as_p}}
+		</div>
+		<div class="modal-footer">
+			<input type="submit" class="btn" value="Agregar">
+			<button class="btn" data-dismiss="modal">Cerrar</button>
+		</div>
+	</form>
+</div>
+<div id="eliminarsecretaria" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+	<div class="modal-header">
+	  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	  <h3 id="myModalLabel">Eliminando una secretaria</h3>
+	</div>
+	<form action="/eliminarsecretaria" method="post">
+		<div class="modal-body">
+		        {% csrf_token %}
+		        {{Esecretaria_form.as_p}}
+		</div>
+		<div class="modal-footer">
+			<input type="submit" class="btn" value="Eliminar">
+			<button class="btn" data-dismiss="modal">Cerrar</button>
+		</div>
+	</form>
+</div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block MAIN %}
+<ul id="myTab" class="nav nav-tabs" >
+	<li class="active"><a href="#metro" data-toggle="tab">En Metro</a></li>
+	<li class=""><a href="#micro" data-toggle="tab">En Micro</a></li>
+	<li class=""><a href="#auto" data-toggle="tab">En Auto</a></li>
+</ul>
+<div>
+	<div id="myTabContent" class="tab-content" style="text-align:center;">
+		<div class="tab-pane fade active in" id="metro">
+			<p style="padding-top:1%; color: #013220;
+	text-shadow: 1px 1px 1px #fafafa; text-weight: bold;">Avenida La Paz n°750 </br>Para llegar en metro, la estación más cercana es Cerro Blanco, línea 2.</p> 
+			<img src="{{STATIC_URL}}/img/mapa.jpg" alt="">
+			
+		</div>
+		<div class="tab-pane fade" id="micro">
+			
+			<p style="padding-top:1%;color: #013220;
+	text-shadow: 1px 1px 1px #fafafa; text-weight: bold;">Avenida La Paz n°750 </br>Para llegar en transantiago puede tomar los recorridos 301, 201, 202 o 223 en el paradero frente a Estación metro Cal y Canto o en cualquier paradero del eje Gran Avenida - San Diego.</p>
+			<img src="{{STATIC_URL}}/img/mapa1.jpg" alt="">
+		</div>
+		<div class="tab-pane fade" id="auto">
+			<p style="padding-top:1%;color: #013220;
+	text-shadow: 1px 1px 1px #fafafa; text-weight: bold;">Avenida La Paz n°750 </br>Para llegar en automóvil, si viene del norte debe tomar Av. Independencia al sur y luego doblar por Sergio Livingstone (ex-olivos) hacia oriente, si viene del sur, debe tomar Avenida La Paz hacia el norte.</p>
+			<img src="{{STATIC_URL}}/img/mapa2.jpg" alt="">
+			
+		</div>
+	</div>
+</div>
+{% endblock %}

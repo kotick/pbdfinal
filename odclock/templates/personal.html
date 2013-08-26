@@ -1,0 +1,184 @@
+{% extends 'base.html' %}
+{% block MAIN %}
+<ul id="myTab" class="nav nav-tabs">
+	{%if dentista%}
+	<li class="active"><a href="#dentista" data-toggle="tab">Dentista</a></li>
+	{%endif%}
+	{%if secretaria%}
+	<li><a href="#secretaria" data-toggle="tab">Secretaria</a></li>
+	{%endif%}
+	{%if administrador%}
+	<li><a href="#administrador" data-toggle="tab">Administrador</a></li>
+	{%endif%}
+</ul>
+<div id="myTabContent" class="tab-content">
+	{%if dentista%}
+	<div class="tab-pane fade in active" id="dentista">
+		<div class="tabbable tabs-left">      
+			<ul id="myTab" class="nav nav-tabs">
+				<li class="active"><a href="#informacion" data-toggle="tab">Informaciones</a></li>
+				<li><a href="#agendadas" data-toggle="tab">Horas Agendadas</a></li>
+				<li><a href="#tomar" data-toggle="tab">Toma Hora</a></li>
+				<li><a href="#administrar" data-toggle="tab">Administrar cuenta</a></li>
+			</ul>
+			<div id="myTabContent" class="tab-content">
+				<div class="tab-pane fade in active" id="informacion">
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas, omnis, animi tenetur obcaecati reprehenderit alias deserunt sit. Voluptatem, ratione, natus, deleniti sequi iure tempora eius quaerat nesciunt rerum sunt voluptas.</p>
+				</div>
+				<div class="tab-pane fade" id="agendadas">
+					<p>caasdas</p>
+				</div>
+				<div class="tab-pane fade" id="tomar">
+					<p>hiohoosa</p>
+				</div>
+				<div class="tab-pane fade" id="administrar">
+					<p>haohoasds</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	{%endif%}
+	{%if secretaria%}
+	<div class="tab-pane fade" id="secretaria">
+		<div class="tabbable tabs-left">      
+			<ul id="myTab" class="nav nav-tabs">
+				<li class="active"><a href="#informacion" data-toggle="tab">Informaciones</a></li>
+				<li><a href="#agendadas" data-toggle="tab">Horas Agendadas</a></li>
+				<li><a href="#tomar" data-toggle="tab">Toma Hora</a></li>
+				<li><a href="#administrar" data-toggle="tab">Administrar cuenta</a></li>
+			</ul>
+			<div id="myTabContent" class="tab-content">
+				<div class="tab-pane fade in active" id="informacion">
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas, omnis, animi tenetur obcaecati reprehenderit alias deserunt sit. Voluptatem, ratione, natus, deleniti sequi iure tempora eius quaerat nesciunt rerum sunt voluptas.</p>
+				</div>
+				<div class="tab-pane fade" id="agendadas">
+					<p>caasdas</p>
+				</div>
+				<div class="tab-pane fade" id="tomar">
+					<p>hiohoosa</p>
+				</div>
+				<div class="tab-pane fade" id="administrar">
+					<p>haohoasds</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	{%endif%}
+	{%if administrador%}
+	<div class="tab-pane fade" id="administrador">
+		<div class="tabbable tabs-left">      
+			<ul id="myTab" class="nav nav-tabs">
+				<li class="active"><a href="#informacion" data-toggle="tab">Informaciones</a></li>
+				<li><a href="#adentista" data-toggle="tab">Administrar Dentistas</a></li>
+				<li><a href="#aespecialidad" data-toggle="tab">Administrar Especialidades</a></li>
+				<li><a href="#abox" data-toggle="tab">Administrar Boxes</a></li>
+				<li><a href="#administrar" data-toggle="tab">Administrar Cuenta</a></li>
+			</ul>
+			<div id="myTabContent" class="tab-content">
+				<div class="tab-pane fade in active" id="informacion">
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas, omnis, animi tenetur obcaecati reprehenderit alias deserunt sit. Voluptatem, ratione, natus, deleniti sequi iure tempora eius quaerat nesciunt rerum sunt voluptas.</p>
+				</div>
+				<div class="tab-pane fade" id="adentista">
+					<li><a data-toggle="modal" href="#adentista" class="btn btn-primary btn-large">Agregar Dentista</a></li>
+					<div id="adentista" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+							<h3 id="myModalLabel">Creando un dentista</h3>
+						</div>
+						<div class="modal-body">
+						    <form action="/agregardentista" method="post">
+						        {% csrf_token %}
+						        {{Adentista_form.as_p}}
+					        	<input type="submit" class="btn" value="Crear">
+					    	</form>	
+						</div>
+						<div class="modal-footer">
+							<button class="btn btn-primary">Cerrar</button>
+						</div>
+					</div>
+					<li><a data-toggle="modal" href="#edentista" class="btn btn-primary btn-large">Eliminar Dentista</a></li>
+					<li><a data-toggle="modal" href="#asignar" class="btn btn-primary btn-large">Asignar Especialidad</a></li>
+					<li><a data-toggle="modal" href="#ingresar" class="btn btn-primary btn-large">Ingresar Oferta Horaria</a></li>
+					<li><a data-toggle="modal" href="#eoferta" class="btn btn-primary btn-large">Eliminar Oferta Horaria</a></li>
+				</div>
+				<div class="tab-pane fade" id="aespecialidad">
+					<p>hiohoosa</p>
+				</div>
+				<div class="tab-pane fade" id="abox">
+					<p>hiohoosa</p>
+				</div>
+				<div class="tab-pane fade" id="administrar">
+					<p>haohoasds</p>
+				</div>
+			</div>
+		</div>		
+	</div>
+	{%endif%}
+</div>
+
+
+<div id="edentista" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h3 id="myModalLabel">Eliminando un dentista</h3>
+	</div>
+	<div class="modal-body">
+	    <form action="/eliminardentista" method="post">
+	        {% csrf_token %}
+	        {{Edentista_form.as_p}}
+        	<input type="submit" class="btn" value="Eliminar">
+    	</form>			
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-primary">Cerrar</button>
+	</div>
+</div>
+<div id="asignar" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h3 id="myModalLabel">Asignando una especialidad</h3>
+	</div>
+	<div class="modal-body">
+	    <form action="/asignarespecialidad" method="post">
+	        {% csrf_token %}
+	        {{Asignar_form.as_p}}
+        	<input type="submit" class="btn" value="Asignar">
+    	</form>			
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-primary">Cerrar</button>
+	</div>
+</div>
+<div id="ingresar" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h3 id="myModalLabel">Ingresando una oferta horaria</h3>
+	</div>
+	<div class="modal-body">
+	    <form action="/ingresaroferta" method="post">
+	        {% csrf_token %}
+	        {{Ingresar_form.as_p}}
+        	<input type="submit" class="btn" value="Ingresar">
+    	</form>			
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-primary">Cerrar</button>
+	</div>
+</div>
+<div id="eoferta" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h3 id="myModalLabel">Eliminando una oferta horaria</h3>
+	</div>
+	<div class="modal-body">
+	    <form action="/eliminaroferta" method="post">
+	        {% csrf_token %}
+	        {{Eoferta_form.as_p}}
+        	<input type="submit" class="btn" value="Eliminar">
+    	</form>			
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-primary">Cerrar</button>
+	</div>
+</div>
+{% endblock %}

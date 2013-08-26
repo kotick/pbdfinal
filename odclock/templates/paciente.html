@@ -1,0 +1,203 @@
+{% extends 'base.html' %}
+{% block MAIN %}
+<div class="tabbable tabs-left">      
+	<ul id="myTab" class="nav nav-tabs">
+		<li class="active"><a href="#informacion" data-toggle="tab">Informaciones</a></li>
+		<li><a href="#agendadas" data-toggle="tab">Horas Agendadas</a></li>
+		<li><a href="#tomar" data-toggle="tab">Toma Hora</a></li>
+		<li><a href="#administrar" data-toggle="tab">Administrar cuenta</a></li>
+	</ul>
+	<div id="myTabContent" class="tab-content">
+		<div class="tab-pane fade in active" id="informacion" style="color:#3b444b;">
+			{%if error%}
+				<div class="alert alert-error">
+		        	<button type="button" class="close" data-dismiss="alert">×</button>
+		        	<strong>ERROR</strong> Formulario mal llenado.
+		        </div>
+			{%endif%}
+			<h3>Bienvenido/a</h3>
+			<h2>En esta sección podrá:</h3>
+			<p> -Agendar horas
+				- Cancelar horas
+				- Ver sus horas agendadas
+				- Administrar su cuenta
+		</p>
+		</div>
+		<div class="tab-pane fade" id="agendadas">
+			{%if agendamientos%}
+				{%for agendamiento in agendamientos%}
+					{%if agendamiento.desabilitado%}
+					{%else%}
+						<table class="table table-hover table-condensed">
+							<thead> 
+								<tr>
+									<td>Especialidad</td>
+									<td>Dentista</td>
+									<td>Dia</td>
+									<td>Mes</td>
+									<td>Bloque</td>
+									<td>Eliminar Hora</td>
+								</tr>
+							</thead>                   
+							<tbody>
+								<tr>
+									<td>{{agendamiento.especialidad.nombre}}</td>
+									<td>{{agendamiento.dentista.nombres}}</td>
+									<td>{{agendamiento.calendario.dia}}</td>
+									<td>{{agendamiento.calendario.mes}}</td>
+									<td>{{agendamiento.calendario.Bloque_horario}}</td>
+									<td>
+			                            <form action="borrar/hora/{{agendamiento.id}}/" method="post">
+				                            {% csrf_token %}
+				                            <button type="submit"class="btn btn-primary">Cancelar</button>
+			                            </form>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					{%endif%}
+				{%endfor%}
+			{%else%}
+				<h3>No posee agendamientos</h3>
+			{%endif%}
+		</div>
+		<div class="tab-pane fade" id="tomar">
+			<div class="row-fluid">
+				<div class="span5">
+				    <form action="" method="post">
+				        {% csrf_token %}
+				        {{verhorarioe_form}}
+				        {{verhorariod_form}}
+			    	</form>
+		    	</div>
+		    	<div class="span7">
+		    		<head>
+					  <meta charset="utf-8">
+					  <link rel="stylesheet" href="jquery-ui-1.10.2.cupertino.css" />
+					  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+					  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+					  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+					  <script src="http://jqueryui.com/ui/i18n/jquery.ui.datepicker-es.js"></script>
+
+					</head>
+				<body>
+
+		    		<div id="datepicker" class='hidden'>
+
+   
+					  <script id='calendario'>
+					  $("#datepicker").datepicker({
+					    beforeShow: function(input) {
+					      alert(getDate());					      
+					    },
+					    onSelect: function(dateText, inst) {
+					        var dia= inst.selectedDay;
+					        var mes=inst.selectedMonth;
+					        var ano = inst.selectedYear;
+					        var fecha=new Date(ano,mes,dia);
+					        var diasemana=fecha.getDay();
+							var valor=$('#id_dentista option:selected').html();
+
+							juntando(diasemana,dia,mes,valor);
+					      },
+					    onClose: function(dateText, inst) {
+					      $(this).css("background-color","");
+					    }
+					  });
+					  $.datepicker.setDefaults($.datepicker.regional['es']);
+
+					  </script>
+
+					</div>
+				</body>
+
+
+
+
+
+
+		    	</div>
+	    	</div>
+	    	<br/>
+	    	<br/>
+	    	<br/>
+			<table class="table table-hover table-condensed">
+				<thead id="cabecera"> 
+				</thead>                   
+				<tbody id="grilla">																	
+				</tbody>
+			</table>		
+		</div>
+		<div class="tab-pane fade" id="administrar">
+			<h3>Hola! {{user.paciente.nombres}} {{user.paciente.apellido_p}} {{user.paciente.apellido_m}}</h3>
+			<div class="accordion" id="accordion2">
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+	                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+	                    	<div class="edicioni">Contraseña</div><div class="edicionc">*******</div><div class="ediciond">Modificar</div>
+	                    </a>
+                    </div>
+                    <div id="collapseOne" class="accordion-body collapse" style="height: 0px;">
+	                    <div class="accordion-inner">
+        				    <form action="modificar/password" method="post">
+						        {% csrf_token %}
+						        {{modificarp_form.as_p}}
+					        	<input type="submit" class="btn" value="Modificar">
+					    	</form>	 	                    	
+	                    	
+	                    </div>
+                    </div>
+                </div>
+                <div class="accordion-group">
+                  	<div class="accordion-heading">
+                    	<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+	                    	<div class="edicioni">Correo</div><div class="edicionc">{{user.email}}</div><div class="ediciond">Modificar</div>
+                    	</a>
+                    </div>
+                    <div id="collapseTwo" class="accordion-body collapse" style="height: 0px;">
+	                    <div class="accordion-inner">
+        				    <form action="modificar/correo" method="post">
+						        {% csrf_token %}
+						        {{modificare_form.as_p}}
+					        	<input type="submit" class="btn" value="Modificar">
+					    	</form>      	
+	                    </div>
+                    </div>
+                </div>
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
+                    	<div class="edicioni">Telefono Celular</div><div class="edicionc">{{user.paciente.telefono_c}}</div><div class="ediciond">Modificar</div>
+                    </a>
+                    </div>
+                    <div id="collapseThree" class="accordion-body collapse" style="height: 0px;">
+                    	<div class="accordion-inner">
+        				    <form action="modificar/telefonocelular" method="post">
+						        {% csrf_token %}
+						        {{modificartc_form.as_p}}
+					        	<input type="submit" class="btn" value="Modificar">
+					    	</form>
+                    	</div>
+                    </div>
+                </div>
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion2" href="#collapseFour">
+                    	<div class="edicioni">Telefono Fijo</div><div class="edicionc">{{user.paciente.telefono_f}}</div><div class="ediciond">Modificar</div>
+                    </a>
+                    </div>
+                    <div id="collapseFour" class="accordion-body collapse" style="height: 0px;">
+                    	<div class="accordion-inner">
+        				    <form action="modificar/telefonofijo" method="post">
+						        {% csrf_token %}
+						        {{modificartf_form.as_p}}
+					        	<input type="submit" class="btn" value="Modificar">
+					    	</form>
+                    	</div>
+                    </div>
+                </div>	                
+            </div>
+		</div>
+	</div>
+</div>
+{% endblock %}
