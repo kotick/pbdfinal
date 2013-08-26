@@ -287,9 +287,31 @@ def crear_usuario(request):
     form = RegisForm(request.POST)
     if not form.is_valid():
         messages.error(request, 'Formulario malo, por favor revise los campos')
-        return HttpResponseRedirect('/iniciosesionpaciente')
+        return HttpResponseRedirect('/sesionpaciente')
 
     rut = form.cleaned_data['username']
+    c=['1','2','3','4','5','6','7','8','9','0','k']
+    if '-' in rut:
+        lista=rut.split('-')    
+        if len(lista[0])<7 or lista[1] not in c or len(lista[0])>8:
+            messages.error(request, 'Rut invalido')
+            return HttpResponseRedirect('/sesionpaciente')
+        try:
+            h=int(lista[0])
+        except:
+            messages.error(request, 'Rut invalido')
+            return HttpResponseRedirect('/sesionpaciente')
+    else:
+        if len(rut)>9 or len(rut)<8:
+            messages.error(request, 'Rut invalido')
+            return HttpResponseRedirect('/sesionpaciente')
+        if rut[-1]!='k':
+            try:
+                int (rut)
+            except:
+                messages.error(request, 'Rut invalido')
+                return HttpResponseRedirect('/sesionpaciente')
+    
     nombres = form.cleaned_data['nombres']
     apellidop = form.cleaned_data['apellidop']
     apellidom = form.cleaned_data['apellidom']
@@ -301,11 +323,11 @@ def crear_usuario(request):
 
     if pass1 != pass2:
         messages.error(request, 'Las contraseñas ingresadas no coinciden')
-        return HttpResponseRedirect('/iniciosesionpaciente')
+        return HttpResponseRedirect('/sesionpaciente')
 
     if email2 != email1:
         messages.error(request, 'Los correos ingresados no coinciden')
-        return HttpResponseRedirect('/iniciosesionpaciente')
+        return HttpResponseRedirect('/sesionpaciente')
 
     existe = False
     usuarios = User.objects.all()
@@ -315,7 +337,7 @@ def crear_usuario(request):
 
     if existe:
         messages.error(request, 'Lo sentimos pero ese rut ya se encuentra registrado')
-        return HttpResponseRedirect('/iniciosesionpaciente')
+        return HttpResponseRedirect('/sesionpaciente')
 
     new_user = User(username=rut,email=email1,first_name="Paciente")
     new_user.set_password(pass1)
